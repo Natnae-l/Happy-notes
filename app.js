@@ -22,3 +22,9 @@ app.set('view engine', 'ejs');
 
 // routes
 app.use('/', require('./routes/index'))
+
+//handle 404
+
+app.get('*', (req, res, next) => {
+    res.status(404).render('404')
+})

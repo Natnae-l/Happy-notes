@@ -5,7 +5,10 @@ homePage = async  (req, res, next) => {
         title: 'nodeJs notes',
         description: 'node description'
     }
-    res.render('index', locals);
+    res.render('index', {
+        locals,
+        layouts: '../views/layouts/front-page-layout'
+    });
 };
 
 // get about page
