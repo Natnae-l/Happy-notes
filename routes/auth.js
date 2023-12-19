@@ -46,6 +46,12 @@ router.get('/google/callback',
     successRedirect: '/dashboard'
  }),
 );
+router.get('/logout', function(req, res, next){
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 passport.serializeUser(function(user, done) {
   return done(null, user.id)
 });
@@ -54,5 +60,7 @@ passport.deserializeUser(async function(id, done) {
  let user = await User.findById(id);
   return done(null, user)
 });
+
+
 
 module.exports = router;
