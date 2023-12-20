@@ -10,7 +10,6 @@ body {
     font-weight: 300;
     font-size: 1.05rem;
     background-image: url(../images/noise-bg.png);
-    overflow-y: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {

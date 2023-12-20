@@ -53,5 +53,5 @@ app.use('/', require('./routes/dashboard'))
 //handle 404
 
 app.get('*', (req, res, next) => {
-    res.status(404).render('404')
+    res.render('404')
 })

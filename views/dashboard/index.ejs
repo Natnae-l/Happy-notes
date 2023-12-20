@@ -1,1 +1,30 @@
-<h2>Dashboard</h2>
+
+<div class="container-fluid pb-5 mb-5 container-fluid-custom ">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Hey, <%= user.displayName%></h1>
+        </div>
+        <div class="text-end col">
+            <a href="/dashboard/add" class="btn btn-primary ">+ New Note</a>
+        </div>
+    </div>
+    <div class="row ">
+        <% if(notes.length > 0){%>
+            <%notes.forEach(item => {%>
+                    <div class="col-sm-3 mb-4">
+                        <div class="card border-primary" style="min-height: 220px;">
+                            <a href="dashboard/item/<%=item._id%>" class="card-body text-decoration-none">
+                                <h5 class="card-title">
+                                    <%=item.title%>
+                                </h5>
+                                <p class="card-text"><%=item.body%></p>
+                            </a>
+                        </div>
+                    </div>
+                <%})} else{%>
+                        <div class="row">
+                            <h3>please add notes to see them here</h3>
+                        </div>
+                    <%}%>
+    </div>
+</div>
