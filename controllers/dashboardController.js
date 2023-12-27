@@ -33,7 +33,6 @@ showNotes = async (req, res, next) => {
     
 }
 updateNotes = async (req, res, next) => {
-    // console.log(req.body, req.params.id)
     try {
         let updateNote = await Notes.findById({_id: req.params.id});
         if (updateNote && req.body.name && req.body.body){
@@ -51,7 +50,17 @@ updateNotes = async (req, res, next) => {
 }
 
 deleteNote = async (req, res, next) => {
-    console.log(req.params.id)
+    // console.log(req.params.id)
+    try {
+        let deletedNote = await Notes.findByIdAndDelete({_id: req.params.id});
+        if (deletedNote){
+            res.redirect('/dashboard')
+        } else{
+            res.redirect(`/dashboard/item/${req.params.id}`)
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
