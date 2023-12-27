@@ -50,6 +50,10 @@ updateNotes = async (req, res, next) => {
     }   
 }
 
+deleteNote = async (req, res, next) => {
+    console.log(req.params.id)
+}
+
 module.exports = {
-    dashboard, showNotes, updateNotes
+    dashboard, showNotes, updateNotes, deleteNote
 }
