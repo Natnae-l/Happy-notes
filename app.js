@@ -4,6 +4,7 @@ const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session')
+const methodOverride = require('method-override');
 
 // create express app
 const app = express();
@@ -44,6 +45,8 @@ app.use(express.static('public'))
 app.use(expressLayouts)
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
+
+app.use(methodOverride('_method'))
 
 // routes
 app.use('/', require('./routes/auth'))
