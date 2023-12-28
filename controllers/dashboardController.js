@@ -69,7 +69,7 @@ addNote = async (req, res, next) => {
     })
 }
 add = async (req, res, next) => {
-    
+
     let newNote = new Notes({
         title: req.body.name,
         body: req.body.body,
@@ -82,6 +82,28 @@ add = async (req, res, next) => {
     }
     res.redirect('/dashboard')
 }
+
+dashboardSearchSubmit = async (req, res) => {
+    try {
+      let searchTerm = req.body.searchTerm;
+      const searchNoSpecialChars = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+  
+      const searchResults = await Notes.find({
+        $or: [
+          { title: { $regex: new RegExp(searchNoSpecialChars, "i") } },
+          { body: { $regex: new RegExp(searchNoSpecialChars, "i") } },
+        ],
+      }).where({ user: req.user._id });
+      console.log(searchResults)
+  
+      res.render("dashboard/search", {
+        searchResults,
+        layout: "../views/layouts/dashboard",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 module.exports = {
-    dashboard, showNotes, updateNotes, deleteNote, addNote, add
+    dashboard, showNotes, updateNotes, deleteNote, addNote, add, dashboardSearchSubmit
 }

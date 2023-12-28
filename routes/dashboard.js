@@ -6,6 +6,7 @@ const router = express.Router();
 
 
 router.get('/dashboard',checkAuth, dashboardController.dashboard)
+router.post('/dashboard/search',checkAuth, dashboardController.dashboardSearchSubmit)
 router.post('/dashboard/item/add', checkAuth, dashboardController.add)
 router.get('/dashboard/item/:id', checkAuth, dashboardController.showNotes)
 router.get('/dashboard/addnote', checkAuth, dashboardController.addNote)
