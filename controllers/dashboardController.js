@@ -50,7 +50,7 @@ updateNotes = async (req, res, next) => {
 }
 
 deleteNote = async (req, res, next) => {
-    // console.log(req.params.id)
+ 
     try {
         let deletedNote = await Notes.findByIdAndDelete({_id: req.params.id});
         if (deletedNote){
@@ -69,9 +69,9 @@ addNote = async (req, res, next) => {
     })
 }
 add = async (req, res, next) => {
-    console.log(req.body)
+    
     let newNote = new Notes({
-        name: req.body.name,
+        title: req.body.name,
         body: req.body.body,
         user: req.user._id
     })
