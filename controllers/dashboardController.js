@@ -72,7 +72,8 @@ add = async (req, res, next) => {
     console.log(req.body)
     // let newNote = new Notes({
     //     name: req.body.name,
-    //     body: req.body.body
+    //     body: req.body.body,
+    //     user: req.user._id
     // })
     // try {
     //   await newNote.save();
