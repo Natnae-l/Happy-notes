@@ -6,9 +6,9 @@ const router = express.Router();
 
 
 router.get('/dashboard',checkAuth, dashboardController.dashboard)
+router.get('/dashboard/item/add', checkAuth, dashboardController.add)
 router.get('/dashboard/item/:id', checkAuth, dashboardController.showNotes)
 router.get('/dashboard/addnote', checkAuth, dashboardController.addNote)
-router.get('/dashboard/item/add', checkAuth, dashboardController.add)
 router.post('/dashboard/item/:id', checkAuth, dashboardController.updateNotes)
 router.delete('/note/:id', checkAuth, dashboardController.deleteNote)
 
