@@ -63,6 +63,14 @@ deleteNote = async (req, res, next) => {
     }
 }
 
+addNote = async (req, res, next) => {
+    res.render('dashboard/addNote', {
+        layout: '../views/layouts/dashboard',
+    })
+}
+add = async (req, res, next) => {
+    
+}
 module.exports = {
-    dashboard, showNotes, updateNotes, deleteNote
+    dashboard, showNotes, updateNotes, deleteNote, addNote, add
 }
