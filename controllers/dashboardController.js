@@ -70,16 +70,16 @@ addNote = async (req, res, next) => {
 }
 add = async (req, res, next) => {
     console.log(req.body)
-    // let newNote = new Notes({
-    //     name: req.body.name,
-    //     body: req.body.body,
-    //     user: req.user._id
-    // })
-    // try {
-    //   await newNote.save();
-    // } catch(err){
-    //     console.log(err)
-    // }
+    let newNote = new Notes({
+        name: req.body.name,
+        body: req.body.body,
+        user: req.user._id
+    })
+    try {
+      await newNote.save();
+    } catch(err){
+        console.log(err)
+    }
     res.redirect('/dashboard')
 }
 module.exports = {
