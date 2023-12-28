@@ -69,7 +69,15 @@ addNote = async (req, res, next) => {
     })
 }
 add = async (req, res, next) => {
-    
+    let newNote = new Notes({
+        name: req.body.name,
+        body: req.body.body
+    })
+    try {
+      await newNote.save();
+    } catch(err){
+        console.log(err)
+    }
 }
 module.exports = {
     dashboard, showNotes, updateNotes, deleteNote, addNote, add
