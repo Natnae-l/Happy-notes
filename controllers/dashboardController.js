@@ -1,11 +1,17 @@
 const Notes = require('../model/notesModel')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const pagination = require('pagination');
 
 
 dashboard = async (req, res, next) => {
  
-    let notes = await Notes.find({user: req.user._id})
+    let page = req.query.page || 2;
+    let notePerPage = 8;
+    
+    var paginator = new pagination.SearchPaginator({prelink:'/', current: page, rowsPerPage: notePerPage, totalResult: 10});
+    console.log(paginator.getPaginationData());
 
+    let notes = await Notes.find({user: req.user._id}).skip(page * notePerPage).limit(notePerPage);
     const locals = {
         title: 'dashboard',
         description: 'node description'
@@ -16,14 +22,17 @@ dashboard = async (req, res, next) => {
         locals,
         layout: '../views/layouts/dashboard',
         user,
-        notes
+        notes,
+        notePerPage
     });
 }
 
 showNotes = async (req, res, next) => {
+
     const note = await Notes.findById({_id: req.params.id}).where({
         user: req.user._id
     }).lean()
+
     if (note) res.render('dashboard/view-notes', {
         layout: '../views/layouts/dashboard',
         noteID: req.params.id,
